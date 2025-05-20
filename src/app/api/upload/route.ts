@@ -2,6 +2,8 @@ import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { NextRequest, NextResponse } from "next/server";
 import slugify from 'slugify'
 
+export const runtime = "edge"
+
 export async function POST(req: NextRequest) {
     const authSession = req.cookies.get("auth_session");
 
