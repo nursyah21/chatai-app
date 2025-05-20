@@ -1,26 +1,30 @@
+import { FIREBASE_ADMIN_SDK, NODE_ENV } from "@/lib/env";
 import { adminAuth } from "@/lib/firebaseAdmin";
+import { cert } from "firebase-admin/app";
 import { NextRequest, NextResponse } from "next/server";
+export const runtime = "edge"
 
 export async function POST(req: NextRequest) {
     try {
         const { idToken } = await req.json();
         console.log({ idToken })
+        cert('firebase.json')
+        return NextResponse.json({idToken,})
+        // const decodedToken = await adminAuth.verifyIdToken(idToken);
 
-        const decodedToken = await adminAuth.verifyIdToken(idToken);
+        // const res = NextResponse.json({
+        //     message: "User authenticated",
+        //     user: { uid: decodedToken.uid, email: decodedToken.email },
+        // })
 
-        const res = NextResponse.json({
-            message: "User authenticated",
-            user: { uid: decodedToken.uid, email: decodedToken.email },
-        })
+        // res.cookies.set("auth_session", idToken, {
+        //     httpOnly: true,
+        //     secure: NODE_ENV === "production",
+        //     maxAge: 60 * 60 * 24 * 7,
+        //     path: "/",
+        // })
 
-        res.cookies.set("auth_session", idToken, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            maxAge: 60 * 60 * 24 * 7,
-            path: "/",
-        })
-
-        return res
+        // return res
 
     } catch (err) {
         let message = '"An unknown error occurred'

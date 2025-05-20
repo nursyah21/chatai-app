@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.4.0",
+    "hono": "^4.7.10",
+    "jose": "^6.0.11",
+    "next-firebase-auth-edge": "^1.9.1"
+  },
+  "devDependencies": {
+    "wrangler": "^4.4.0"
+  }
+}
