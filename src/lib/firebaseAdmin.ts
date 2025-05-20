@@ -1,9 +1,9 @@
-import { initializeApp, cert } from "firebase-admin/app";
+import { initializeApp, cert, getApps, getApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 
 const serviceAccount = process.env.FIREBASE_ADMIN_SDK!;
 
-const app = initializeApp({
+const app = getApps().length ? getApp() : initializeApp({
     credential: cert(serviceAccount)
 });
 

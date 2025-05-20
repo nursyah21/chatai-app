@@ -12,7 +12,8 @@ export default function Home() {
   const handleGoogleLogin = async () => {
     try {
       const userCredential = await signInWithPopup(auth, googleProvider);
-      const idToken = await userCredential.user.getIdToken();
+      const idToken = await userCredential.user.getIdToken();      
+
 
       const response = await fetch("/api/auth/google", {
         method: "POST",

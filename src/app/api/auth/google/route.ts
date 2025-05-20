@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
     try {
         const { idToken } = await req.json();
+        console.log({ idToken })
+
         const decodedToken = await adminAuth.verifyIdToken(idToken);
 
         const res = NextResponse.json({
