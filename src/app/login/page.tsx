@@ -27,7 +27,6 @@ export default function Home() {
         router.push('/app')
       }
     } catch (error) {
-
       console.error("Login error:", error);
     }
   };
